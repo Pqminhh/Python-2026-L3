@@ -110,13 +110,15 @@ def main(stdscr):
                 for s in students:
                     try:
                         raw_mark = float(get_input(stdscr, f"Enter mark for {s.name} (ID {s.id}): "))
-                        # Use math module to round down to 1-digit decimal
+                        # Use math module to round down 
                         s.marks[selected_course] = math.floor(raw_mark * 10) / 10
                     except ValueError:
                         stdscr.addstr("Invalid mark! Skipping...\n")
-            else:
-                stdscr.addstr("\nError: That course ID does not exist.\n")
             
+            stdscr.clear()
+            if not course_obj:
+                stdscr.addstr("Error: That course ID does not exist.\n")
+                
             stdscr.addstr("\nPress any key to return to the menu...")
             stdscr.getch()
 
